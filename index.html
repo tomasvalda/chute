@@ -1,0 +1,70 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Chute challenge</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <script type="text/javascript" src="src/jquery-1.4.4.js"></script>
+    <script src="src/angular.js"></script>
+
+    <script src="src/bower_components/angular-sanitize.js"></script>
+    <script src="src/bower_components/angular-resource.js"></script>
+    <script src="src/chute.js"></script>
+    <script src="src/api/Resource.js"></script>
+    <script src="src/api/Asset.js"></script>
+    <script src="src/api/Heart.js"></script>
+    <script src="src/app.js"></script>
+    
+</head>
+
+<body id="ng-app" class="container">
+<div id="middle">
+	<div class="wall" ng-app="Test" ng-controller="MainCtrl">
+	
+<!--	<div infinite-scroll="assets.nextPage()" infinite-scroll-disabled="paused()" infinite-scroll-distance="1"> -->
+
+    	<div class="wall-item" ng-repeat="asset in assets">
+        	<img ng-src="{{asset.url}}/500x300" width="300" height="180">
+
+        	<div class="like icon-star" ng-class="{'active': asset.hearted()}" ng-click="asset.toggleHeart()">
+            </div>
+        
+        	<p>{{asset.caption}}
+            </p>
+        
+        	<ng-pluralize class="likes" count="asset.hearts" when="{'one':'1 like', 'other':'{} likes'}">
+            </ng-pluralize>
+		</div>
+        <nav class="fixed-nav-bar">
+        	<a class="site-logo" href="http://www.getchute.com">
+								
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 25" enable-background="new 0 0 100 25" xml:space="preserve">
+					<g>
+						<g>
+							<path d="M35.9 17c1.6 0 3-0.6 4-1.9l2.1 2.2c-1.7 1.9-3.7 2.9-6 2.9s-4.2-0.7-5.7-2.2c-1.5-1.5-2.2-3.3-2.2-5.5 c0-2.2 0.8-4.1 2.3-5.5c1.5-1.5 3.4-2.2 5.6-2.2c2.4 0 4.5 0.9 6.1 2.8L40 9.9c-1.1-1.3-2.4-2-3.9-2c-1.3 0-2.3 0.4-3.2 1.2 c-0.9 0.8-1.3 1.9-1.3 3.3s0.4 2.5 1.3 3.3C33.7 16.6 34.7 17 35.9 17z"/>
+							<path d="M53.2 5.1h3.3V20h-3.3v-5.9h-5.9V20H44V5.1h3.3v6.2h5.9V5.1z"/>
+							<path d="M63.6 16.1c0.6 0.7 1.3 1 2.2 1c0.9 0 1.7-0.3 2.2-1c0.5-0.7 0.8-1.6 0.8-2.8V5h3.3v8.3 c0 2.2-0.6 3.8-1.8 5c-1.2 1.2-2.7 1.7-4.6 1.7c-1.9 0-3.4-0.6-4.6-1.7c-1.2-1.2-1.8-2.8-1.8-5V5h3.3v8.2 C62.8 14.4 63.1 15.4 63.6 16.1z"/>
+							<path d="M81.7 7.9v12h-3.3v-12h-4.2V5h11.8v2.9H81.7z"/>
+							<path d="M98.5 5v3h-7.4V11h6.7v2.8h-6.7V17h7.7v2.9h-11V5H98.5z"/>
+						</g>
+						<g>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7 10.5c-1.6 0-2.9 1.3-2.9 2.9c0 1.6 1.3 2.9 2.9 2.9 s2.9-1.3 2.9-2.9C15.5 11.8 14.2 10.5 12.7 10.5z M12.7 15.4c-1.1 0-2-0.9-2-2c0-1.1 0.9-2 2-2s2 0.9 2 2 C14.6 14.5 13.7 15.4 12.7 15.4z"/>
+							<rect x="13.7" y="7.7" fill-rule="evenodd" clip-rule="evenodd" width="2.6" height="1.3"/>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7 1C6.3 1 1.2 6.1 1.2 12.4c0 6.3 5.1 11.4 11.4 11.4 s11.4-5.1 11.4-11.4C24.1 6.1 19 1 12.7 1z M18.2 17.8L18.2 17.8l-0.1 0c-0.1 0-0.2 0-0.2 0c-0.1 0-0.2 0-0.2 0H7.6 c-0.1 0-0.1 0-0.2 0c-2 0-3.6-1.6-3.6-3.6c0-1.7 1.2-3.1 2.8-3.5c0.1-1.4 1.3-2.5 2.7-2.5c0.8 0 1.5 0.3 2 0.8 c0.6-1.6 2.1-2.7 3.9-2.7c2.3 0 4.2 1.9 4.2 4.2c0 0.1 0 0.1 0 0.2c1.4 0.5 2.4 1.9 2.4 3.5C21.6 16 20.1 17.6 18.2 17.8z"/>
+						</g>
+					</g>
+            	</svg>
+            </a>
+			
+            <a class="view-more button" ng-show="assets.hasMore()" ng-click="assets.nextPage()">View more</a>
+		</nav>
+<!-- Congratulations, you've reached the end of the internet. -->
+     </div>
+</div>
+
+</body>
+</html>
