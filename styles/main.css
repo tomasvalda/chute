@@ -29,6 +29,8 @@ body, html {
 
 a img {
     border: none;
+	max-width: 300px;
+	max-height: 180px;
 }
 
 .clearfix:before,.clearfix:after {
